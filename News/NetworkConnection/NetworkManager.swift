@@ -39,10 +39,6 @@ class NetworkManager: NSObject {
         }
     }
     
-    @objc func networkStatusChanged(_ notification: Notification) {
-        // Do something globally here!
-    }
-    
     static func stopNotifier() -> Void {
         do {
             // Stop the network status notifier
