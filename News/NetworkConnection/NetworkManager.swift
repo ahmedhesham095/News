@@ -19,15 +19,8 @@ class NetworkManager: NSObject {
     
     override init() {
         super.init()
-        
         // Initialise reachability
         reachability = Reachability()!
-        do {
-            // Start the network status notifier
-            try reachability.startNotifier()
-        } catch {
-            print("Unable to start notifier")
-        }
     }
     
     static func stopNotifier() -> Void {
