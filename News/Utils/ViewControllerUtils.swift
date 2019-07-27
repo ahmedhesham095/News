@@ -9,12 +9,10 @@
 import UIKit
 
 class ViewControllerUtils {
-    
     var container: UIView = UIView()
     var loadingView: UIView = UIView()
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
-   
     func showActivityIndicator(uiView: UIView) {
         container.frame = uiView.frame
         container.center = uiView.center
