@@ -15,12 +15,10 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-
+    
     func setDescriptonText(with text :String)  {
         descriptionLabel.text = text
     }
-    
     
     @IBAction func dismissAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
