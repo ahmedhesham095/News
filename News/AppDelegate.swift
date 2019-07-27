@@ -50,7 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func startReachability() {
-        
         reachability?.whenUnreachable = { _ in
             self.reachability?.whenReachable = { reachability in
                 NotificationCenter.default.post(name: NSNotification.Name.networkReconnected, object: nil)
