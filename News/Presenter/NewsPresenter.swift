@@ -59,6 +59,7 @@ class NewsPresenter: NSObject {
         countryCodes.forEach { (code) in
             if countryCode == code {
                 defaultCountryCode = countryCode
+                return
             }
         }
         return defaultCountryCode
