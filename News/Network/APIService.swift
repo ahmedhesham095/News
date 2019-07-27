@@ -36,11 +36,9 @@ extension APIService :TargetType{
             return .get
         }
     }
-    
     var sampleData: Data {
         return Data()
     }
-    
     var task: Task {
         
         switch self {

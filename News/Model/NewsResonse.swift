@@ -16,7 +16,6 @@ class NewsResonse : NSObject, NSCoding, Mappable{
     var status : String?
     var totalResults : Int?
     
-    
     class func newInstance(map: Map) -> Mappable?{
         return NewsResonse()
     }
