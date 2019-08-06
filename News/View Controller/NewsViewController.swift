@@ -29,7 +29,7 @@ class NewsViewController: UIViewController {
         newsTable.delegate = self
         newsTable.dataSource = self
         newsTable.rowHeight = UITableView.automaticDimension
-        newsTable.register(UINib(nibName: "NewsViewCell", bundle: nil), forCellReuseIdentifier: "newscell")
+        newsTable.register(UINib(nibName: "NewsViewCell", bundle: nil), forCellReuseIdentifier: Constants.CELL_IDENTIFIER)
         setupPullToRefresh()
         setupLoadMore()
         
@@ -94,7 +94,7 @@ extension NewsViewController : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = newsTable.dequeueReusableCell(withIdentifier: "newscell", for: indexPath) as! NewsViewCell
+        let cell = newsTable.dequeueReusableCell(withIdentifier: Constants.CELL_IDENTIFIER , for: indexPath) as! NewsViewCell
         cell.configure(with:  articlesArray[indexPath.row])
         return cell
     }

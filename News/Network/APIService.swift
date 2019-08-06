@@ -20,13 +20,13 @@ extension APIService :TargetType{
     }
     //Base URL
     var baseURL: URL {
-        return URL(string: "https://newsapi.org/v2")!
+        return URL(string: Constants.BASE_URL)!
     }
     // Endpoint URL
     var path: String {
         switch self {
         case .getNews:
-            return "/top-headlines"
+            return Constants.GET_HEADLINES
         }
     }
     // Request type
@@ -44,7 +44,7 @@ extension APIService :TargetType{
         switch self {
         //Request Parameters
         case .getNews(let country , let offset ):
-            return .requestParameters(parameters: ["country": "\(country)" , "pageSize" : "10" , "page" : "\(offset)" , "apiKey": "cb185160fb7648adb8eea2395b129294"] , encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["country": "\(country)" , "pageSize" : Constants.PAGE_SIZE , "page" : "\(offset)" , "apiKey": Constants.API_KEY] , encoding: URLEncoding.default)
         }
     }
 }
