@@ -44,24 +44,27 @@ class NewsViewController: UIViewController {
         //manage no Internet connection
         manageOfflineConnection()
     }
-    
-    // show Pull to Refresh
+    /**
+     show Pull to Refresh
+     */
     func setupPullToRefresh()  {
         newsTable.spr_setIndicatorHeader {
             self.presenter.loadNews(countryCode: self.countryCode ?? "", pageOffset: self.pageOffset )
             self.newsTable.spr_endRefreshing()
         }
     }
-    
-    // show LoadMore
+    /**
+     show LoadMore
+     */
     func setupLoadMore()  {
         newsTable.spr_setIndicatorFooter {
             self.isLoadMore = true
             self.presenter.loadNews(countryCode: self.countryCode ?? "", pageOffset: (self.pageOffset ) + 1)
         }
     }
-    
-    // alert dialogue to get the country code from user
+    /**
+     alert dialogue to get the country code from user
+     */
     func showAlertForCountryCode() {
         let alert = UIAlertController(title: "Country Code", message: "Please Enter the Country Code to get the news ", preferredStyle: .alert)
         alert.addTextField(configurationHandler: { (textField) -> Void in
@@ -73,11 +76,16 @@ class NewsViewController: UIViewController {
         }))
         self.present(alert, animated: true , completion: nil)
     }
-    // Handle Ioading data when the internet becomes active
+    /**
+    Handle Ioading data when the internet becomes active
+     */
     @objc func networkBecomesConnected() {
         self.presenter.loadNews(countryCode: self.countryCode ?? "" , pageOffset: self.pageOffset)
         
     }
+    /**
+     Handle Ioading data from cache when the internet connection is offline
+     */
     func manageOfflineConnection()  {
         NetworkManager.isUnreachable { (manager) in
             if let  cachedNews = UserDefaults.standard.decode(for: [Article].self, using: String(describing: "CACHED_NEWS")) {

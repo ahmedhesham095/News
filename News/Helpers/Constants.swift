@@ -15,4 +15,5 @@ class Constants {
     static let PAGE_SIZE = "10"
     static let API_KEY = "cb185160fb7648adb8eea2395b129294"
     static let CELL_IDENTIFIER = "newscell"
+    static let DEFAULT_COUNTRY_CODE = "us"
 }

@@ -19,14 +19,18 @@ class NewsPresenter: NSObject {
     init(withDelegate newsDelegate: NewsProtocol) {
         self.newsDelegate = newsDelegate
     }
-    
-    func loadNews(countryCode : String = Locale.current.regionCode ?? "" , pageOffset : Int){
+    /**
+     calls the network manager for loading news
+     */
+    func loadNews(countryCode : String?  , pageOffset : Int){
         var artiles : [Article]?
+        let requestCountryCode = validateCountryCode(usingCode : countryCode ?? "")
         newsDelegate?.showLoader()
-        APIManager.apiSharredInistance.loadNewsData(with: countryCode, and: pageOffset) { (isSuccessful, news) in
+        APIManager.apiSharredInistance.loadNewsData(with: requestCountryCode , and: pageOffset)
+        { (isSuccessful, news) in
             self.newsDelegate?.hideLoader()
             if isSuccessful {
-                if news?.articles?.isEmpty == false {
+                if news?.articles?.isEmpty == true , Constants.Def{
                     self.loadNews(countryCode: "us", pageOffset: 1)
                 }else {
                     artiles = news?.articles ?? []
@@ -36,5 +40,18 @@ class NewsPresenter: NSObject {
                 self.newsDelegate?.configureUI(with: artiles ?? [], and: "error")
             }
         }
+    }
+    /**
+     validate if the country code is empty return the locale of the device
+     parameter countryCode: Describe the country code
+    */
+    func validateCountryCode(usingCode countryCode: String) -> String {
+        var code : String?
+        if countryCode.isEmpty == true {
+            code = Locale.current.regionCode
+        } else {
+            code = countryCode
+        }
+        return code ?? ""
     }
 }
