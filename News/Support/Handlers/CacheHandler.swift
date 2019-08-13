@@ -39,7 +39,7 @@ class CacheHandler {
      Returs an array of Articles
      */
     func getObjects(type: ArticleList.Type) -> [ArticleList] {
-        let objects = try! realm.objects(ArticleList.self).toArray(ofType: ArticleList.self) as [ArticleList]
+        let objects = realm.objects(ArticleList.self).toArray(ofType: ArticleList.self) as [ArticleList]
         return objects
     }
     
