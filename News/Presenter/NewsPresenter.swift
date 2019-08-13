@@ -19,7 +19,6 @@ class NewsPresenter: NSObject {
     init(withDelegate newsDelegate: NewsProtocol) {
         self.newsDelegate = newsDelegate
     }
-    var cache = CacheHandler()
     /**
      calls the network manager for loading news
      parameter countryCode: Describe the country code
@@ -30,18 +29,17 @@ class NewsPresenter: NSObject {
         let requestCountryCode = validateCountryCode(usingCode : countryCode ?? "")
         newsDelegate?.showLoader()
         APIManager.apiSharredInistance.loadNewsData(with: requestCountryCode , and: pageOffset)
-        { (isSuccessful, news) in
+        { (isSuccessful, news ,cachedNews ) in
             self.newsDelegate?.hideLoader()
             if isSuccessful {
-                if news?.articles?.isEmpty == true , countryCode != "us" {
-                    self.loadNews(countryCode: "us", pageOffset: 1)
+                if news?.articles?.isEmpty == true , countryCode != Constants.DEFAULT_COUNTRY_CODE {
+                    self.loadNews(countryCode: Constants.DEFAULT_COUNTRY_CODE , pageOffset: 1)
                 }else {
                     artiles = news?.articles ?? []
-                    self.cache.setArray(with: self.convertToRealmModel(with: news?.articles ?? []))
                     self.newsDelegate?.configureUI(with: artiles ?? [], and: "success")
                 }
             } else {
-                self.loadFromCache()
+                self.newsDelegate?.configureofflineUI(with: cachedNews ?? [])
             }
         }
     }
@@ -57,36 +55,6 @@ class NewsPresenter: NSObject {
             code = countryCode
         }
         return code ?? ""
-    }
-    
-    func convertToRealmModel(with articles : [Article]) -> [ArticleList] {
-        var articlesList = [ArticleList]()
-        articles.forEach { (article) in
-            let articleData = ArticleList()
-            articleData.title = article.title ?? ""
-            articleData.author = article.author ?? ""
-            articleData.publishedAt = article.publishedAt ?? ""
-            articleData.content = article.content ?? ""
-            articleData.descriptionField = article.descriptionField ?? ""
-            articleData.url = article.url ?? ""
-            articleData.urlToImage = article.urlToImage ?? ""
-            articlesList.append(articleData)
-        }
-        return articlesList
-    }
-    
-    func loadFromCache() {
-        var cachedArticles : [ArticleList]?
-        DispatchQueue.main.async {
-            let objects = self.cache.getObjects(type: ArticleList.self)
-            if objects.count > 5 {
-                cachedArticles = Array(objects.prefix(5))
-                self.newsDelegate?.configureofflineUI(with: cachedArticles ?? [])
-            } else {
-                cachedArticles = objects
-                self.newsDelegate?.configureofflineUI(with: cachedArticles ?? [])
-            }
-        }
     }
     
 }

@@ -30,4 +30,20 @@ class ArticleList: Object {
         self.content = content
         self.author = author
     }
+    
+    class func convertToRealmModel(with articles : [Article]) -> [ArticleList] {
+        var articlesList = [ArticleList]()
+        articles.forEach { (article) in
+            let articleData = ArticleList()
+            articleData.title = article.title ?? ""
+            articleData.author = article.author ?? ""
+            articleData.publishedAt = article.publishedAt ?? ""
+            articleData.content = article.content ?? ""
+            articleData.descriptionField = article.descriptionField ?? ""
+            articleData.url = article.url ?? ""
+            articleData.urlToImage = article.urlToImage ?? ""
+            articlesList.append(articleData)
+        }
+        return articlesList
+    }
 }
