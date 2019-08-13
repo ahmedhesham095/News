@@ -20,7 +20,7 @@ class NewsTest: XCTestCase {
     func testLoadingPost() {
         let newsExpectation = expectation(description: "loadNews")
         
-        APIManager.apiSharredInistance.loadNewsData(with: "us", and: 1) { (isSuccessful, response) in
+        APIManager.apiSharredInistance.loadNewsData(with: "us", and: 1) { (isSuccessful, response,cachedResponse) in
             if isSuccessful {
                 XCTAssertTrue(isSuccessful)
             } else {
