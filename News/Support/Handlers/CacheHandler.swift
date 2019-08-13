@@ -34,6 +34,7 @@ class CacheHandler {
             print("Error in Saving Object")
         }
     }
+    
     /**
      Returs an array of Articles
      */
