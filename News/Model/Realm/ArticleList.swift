@@ -11,13 +11,13 @@ import RealmSwift
 
 class ArticleList: Object {
     
-    @objc  dynamic var title: String = ""
+    @objc dynamic var title: String = ""
     @objc dynamic var descriptionField: String = ""
-    @objc  dynamic var url : String = ""
-    @objc  dynamic var urlToImage: String = ""
-    @objc  dynamic var publishedAt: String = ""
+    @objc dynamic var url : String = ""
+    @objc dynamic var urlToImage: String = ""
+    @objc dynamic var publishedAt: String = ""
     @objc dynamic var content: String = ""
-    @objc  dynamic var author : String = ""
+    @objc dynamic var author : String = ""
     
     convenience init(title: String, descriptionField: String, url: String ,urlToImage: String , publishedAt: String , content : String , author : String ){
         self.init()
