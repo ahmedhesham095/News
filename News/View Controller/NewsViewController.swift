@@ -8,6 +8,8 @@
 
 import UIKit
 import SwiftPullToRefresh
+import SwiftMessages
+
 class NewsViewController: UIViewController {
     
     lazy var utils :  ViewControllerUtils = {
@@ -16,7 +18,6 @@ class NewsViewController: UIViewController {
     lazy var presenter :  NewsPresenter = {
         return NewsPresenter(withDelegate: self)
     }()
-    let networkManager = NetworkManager.sharedInstance
     var articlesArray = [Article]()
     var cachedArticlesArray = [ArticleList]()
     var pageOffset = 1
@@ -40,6 +41,7 @@ class NewsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector:
             #selector(networkBecomesConnected), name: NSNotification.Name.networkReconnected, object: nil)
         self.showAlertForCountryCode()
+        self.handleOfflineConnection()
     }
     /**
      show Pull to Refresh
@@ -78,6 +80,28 @@ class NewsViewController: UIViewController {
      */
     @objc func networkBecomesConnected() {
         self.presenter.loadNews(countryCode: self.countryCode ?? "" , pageOffset: self.pageOffset)
+        if self.presentedViewController as? UIAlertController != nil {
+            self.dismiss(animated: true, completion: nil)
+        }
+        SwiftMessages.hide()
+    }
+    /**
+     Show alert to warn the user that he is offline
+     */
+    func handleOfflineConnection()  {
+        NetworkManager.isUnreachable { (manager) in
+            var config = SwiftMessages.Config()
+            config.presentationStyle = .top
+            config.presentationContext = .window(windowLevel: .statusBar)
+            config.duration = .forever
+            let messageView = MessageView.viewFromNib(layout: .statusLine)
+            messageView.configureTheme(.error, iconStyle: .default)
+            messageView.configureDropShadow()
+            messageView.configureContent(body: "Sorry .. No Internet Connection")
+            messageView.titleLabel?.isHidden = true
+            messageView.button?.isHidden = true
+            SwiftMessages.show(config: config, view: messageView)
+        }
     }
 }
 

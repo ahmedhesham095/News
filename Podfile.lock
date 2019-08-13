@@ -1,7 +1,5 @@
 PODS:
   - Alamofire (4.8.2)
-  - Cache (5.2.0)
-  - DataCache (1.5)
   - moa (11.0.1)
   - Moya (12.0.1):
     - Moya/Core (= 12.0.1)
@@ -21,24 +19,24 @@ PODS:
   - RealmSwift (3.16.2):
     - Realm (= 3.16.2)
   - Result (4.1.0)
+  - SwiftMessages (7.0.0):
+    - SwiftMessages/App (= 7.0.0)
+  - SwiftMessages/App (7.0.0)
   - SwiftPullToRefresh (3.1)
 
 DEPENDENCIES:
-  - Cache
-  - DataCache
   - moa
   - Moya
   - Moya-ObjectMapper
   - ObjectMapper
   - ReachabilitySwift
   - RealmSwift
+  - SwiftMessages
   - SwiftPullToRefresh
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
-    - Cache
-    - DataCache
     - moa
     - Moya
     - Moya-ObjectMapper
@@ -47,12 +45,11 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - Result
+    - SwiftMessages
     - SwiftPullToRefresh
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
-  DataCache: 8099e01aa35c2fd30f3410aae14ef5a130f6524b
   moa: a26c4e97c7ac9345e87c4bb999e85116c8ec0310
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   Moya-ObjectMapper: c514b5eafcfd5e260f85f7a5bf66895a217e2b37
@@ -61,8 +58,9 @@ SPEC CHECKSUMS:
   Realm: 0e73b4edeb5b6a90da3d83206883b2e34e00eb38
   RealmSwift: a81e650171ef0a5f999df1ed8d39ba8d6fce88a4
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  SwiftMessages: a952f7a9103d9aeab93730a2861d2d8fcdd8758f
   SwiftPullToRefresh: 80e15ed475994978fb849ffe02f75c72a846642d
 
-PODFILE CHECKSUM: 529549aa27a3c323c8a7966ca41b3ca7ecf181de
+PODFILE CHECKSUM: 507150d42ef93a64a6e5e012501b1bb33e02aff1
 
 COCOAPODS: 1.5.3
