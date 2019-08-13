@@ -48,9 +48,6 @@ class APIManager {
         })
     }
     
-    
-
-    
     func loadFromCache() -> [ArticleList]{
         var cachedArticles : [ArticleList]?
         let objects = self.cache.getObjects(type: ArticleList.self)
