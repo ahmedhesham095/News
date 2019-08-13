@@ -11,6 +11,8 @@ import Moya
 
 class APIManager {
     
+    private init(){}
+    
     static let apiSharredInistance = APIManager()
     
     typealias newsCompletion = ((Bool , NewsResonse?) -> Void)

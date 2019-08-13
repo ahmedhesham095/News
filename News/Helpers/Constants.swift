@@ -16,4 +16,6 @@ class Constants {
     static let API_KEY = "cb185160fb7648adb8eea2395b129294"
     static let CELL_IDENTIFIER = "newscell"
     static let DEFAULT_COUNTRY_CODE = "us"
+    static let DISK_STORAGE_NAME = "Articles"
+    static let CACHE_ARTILCE_KEY = "cachedArticles"
 }

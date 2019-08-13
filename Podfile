@@ -14,4 +14,6 @@ pod 'moa'
 pod 'ReachabilitySwift'
 pod 'SwiftPullToRefresh'
 pod 'DataCache'
+pod 'Cache'
+pod 'RealmSwift'
 end

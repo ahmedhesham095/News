@@ -12,4 +12,5 @@ protocol NewsProtocol {
     func showLoader()
     func hideLoader()
     func configureUI(with articles : [Article], and message: String?)
+    func configureofflineUI(with cachedArticles : [ArticleList])
 }

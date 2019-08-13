@@ -22,10 +22,17 @@ class NewsViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-     }
+    }
     
-    func configure(with article : Article) {
-        newsHeadlineImageView.image = UIImage(named: "placeholder.jpg")
+    func configure(with article : Article? = nil , or cachedArticle : ArticleList? = nil) {
+        guard let article = article else {
+            newsHeadlineImageView.image = UIImage(named: "placeholder.jpg")
+            newsHeadlineImageView.moa.url = cachedArticle?.urlToImage
+            newsTtileLabel.text = cachedArticle?.title
+            newsAuthorLabel.text = cachedArticle?.author
+            newsDescriptionLabel.text = cachedArticle?.descriptionField
+            return
+        }
         newsHeadlineImageView.moa.url = article.urlToImage
         newsTtileLabel.text = article.title
         newsAuthorLabel.text = article.author

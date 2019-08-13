@@ -18,6 +18,7 @@ class NewsViewController: UIViewController {
     }()
     let networkManager = NetworkManager.sharedInstance
     var articlesArray = [Article]()
+    var cachedArticlesArray = [ArticleList]()
     var pageOffset = 1
     var countryCode : String?
     var isLoadMore = false
@@ -38,11 +39,7 @@ class NewsViewController: UIViewController {
         super.viewDidAppear(animated)
         NotificationCenter.default.addObserver(self, selector:
             #selector(networkBecomesConnected), name: NSNotification.Name.networkReconnected, object: nil)
-        NetworkManager.isReachable(completed: { (manager) in
-            self.showAlertForCountryCode()
-        })
-        //manage no Internet connection
-        manageOfflineConnection()
+        self.showAlertForCountryCode()
     }
     /**
      show Pull to Refresh
@@ -77,33 +74,29 @@ class NewsViewController: UIViewController {
         self.present(alert, animated: true , completion: nil)
     }
     /**
-    Handle Ioading data when the internet becomes active
+     Handle Ioading data when the internet becomes active
      */
     @objc func networkBecomesConnected() {
         self.presenter.loadNews(countryCode: self.countryCode ?? "" , pageOffset: self.pageOffset)
-        
-    }
-    /**
-     Handle Ioading data from cache when the internet connection is offline
-     */
-    func manageOfflineConnection()  {
-        NetworkManager.isUnreachable { (manager) in
-            if let  cachedNews = UserDefaults.standard.decode(for: [Article].self, using: String(describing: "CACHED_NEWS")) {
-                self.articlesArray = cachedNews
-                self.newsTable.reloadData()
-            }
-        }
     }
 }
 
 extension NewsViewController : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articlesArray.count
+        if articlesArray.isEmpty == false {
+            return articlesArray.count
+        } else {
+            return cachedArticlesArray.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = newsTable.dequeueReusableCell(withIdentifier: Constants.CELL_IDENTIFIER , for: indexPath) as! NewsViewCell
-        cell.configure(with:  articlesArray[indexPath.row])
+        if articlesArray.isEmpty == false {
+            cell.configure(with:  articlesArray[indexPath.row])
+        } else {
+            cell.configure(with: nil , or: cachedArticlesArray[indexPath.row])
+        }
         return cell
     }
     
@@ -114,19 +107,28 @@ extension NewsViewController : UITableViewDelegate , UITableViewDataSource {
         detailsVC.modalPresentationStyle = .overCurrentContext
         detailsVC.popoverPresentationController?.sourceView = self.view
         self.present(detailsVC , animated: true)
-        detailsVC.setDescriptonText(with: articlesArray[indexPath.row].descriptionField ?? "")
+        if articlesArray.isEmpty == false {
+            detailsVC.setDescriptonText(with: articlesArray[indexPath.row].descriptionField ?? "")
+        } else {
+            detailsVC.setDescriptonText(with: cachedArticlesArray[indexPath.row].descriptionField)
+        }
         
     }
 }
 
 extension NewsViewController : NewsProtocol {
+    
+    func configureofflineUI(with cachedArticles: [ArticleList]) {
+        self.cachedArticlesArray = cachedArticles
+        self.newsTable.reloadData()
+    }
+    
     func configureUI(with articles: [Article], and message: String?) {
         if isLoadMore == true {
             self.articlesArray.append(contentsOf: articles)
             self.isLoadMore = false
         } else {
             self.articlesArray = articles
-            UserDefaults.standard.encode(for: Array(articles.prefix(5)) , using: String(describing: "CACHED_NEWS"))
         }
         self.newsTable.reloadData()
     }
