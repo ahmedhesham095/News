@@ -14,6 +14,7 @@
 		4A0A0A6C22EAFD6D000CBBCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A0A0A6A22EAFD6D000CBBCE /* Main.storyboard */; };
 		4A0A0A6E22EAFD70000CBBCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A0A0A6D22EAFD70000CBBCE /* Assets.xcassets */; };
 		4A0A0A7122EAFD70000CBBCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A0A0A6F22EAFD70000CBBCE /* LaunchScreen.storyboard */; };
+		4A0A0A7C22EAFD70000CBBCE /* NewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0A0A7B22EAFD70000CBBCE /* NewsTests.swift */; };
 		4A0A0A8722EAFD70000CBBCE /* NewsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0A0A8622EAFD70000CBBCE /* NewsUITests.swift */; };
 		4A0A0AB422EAFD9C000CBBCE /* NewsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0A0A9B22EAFD9B000CBBCE /* NewsPresenter.swift */; };
 		4A0A0AB522EAFD9C000CBBCE /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0A0A9D22EAFD9C000CBBCE /* APIService.swift */; };
@@ -74,6 +75,8 @@
 		4A0A0A7022EAFD70000CBBCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4A0A0A7222EAFD70000CBBCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A0A0A7722EAFD70000CBBCE /* NewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A0A0A7B22EAFD70000CBBCE /* NewsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTests.swift; sourceTree = "<group>"; };
+		4A0A0A7D22EAFD70000CBBCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A0A0A8222EAFD70000CBBCE /* NewsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A0A0A8622EAFD70000CBBCE /* NewsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsUITests.swift; sourceTree = "<group>"; };
 		4A0A0A8822EAFD70000CBBCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -172,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				4A0A0A6522EAFD6D000CBBCE /* News */,
+				4A0A0A7A22EAFD70000CBBCE /* NewsTests */,
 				4A0A0A8522EAFD70000CBBCE /* NewsUITests */,
 				4A0581E92302EAD8001AD6DE /* NewsTest */,
 				4A0A0A6422EAFD6D000CBBCE /* Products */,
@@ -211,6 +215,15 @@
 				4A0A0A7222EAFD70000CBBCE /* Info.plist */,
 			);
 			path = News;
+			sourceTree = "<group>";
+		};
+		4A0A0A7A22EAFD70000CBBCE /* NewsTests */ = {
+			isa = PBXGroup;
+			children = (
+				4A0A0A7B22EAFD70000CBBCE /* NewsTests.swift */,
+				4A0A0A7D22EAFD70000CBBCE /* Info.plist */,
+			);
+			path = NewsTests;
 			sourceTree = "<group>";
 		};
 		4A0A0A8522EAFD70000CBBCE /* NewsUITests */ = {
@@ -612,6 +625,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A0A0A7C22EAFD70000CBBCE /* NewsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
