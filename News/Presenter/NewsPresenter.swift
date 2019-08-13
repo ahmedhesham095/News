@@ -27,7 +27,6 @@ class NewsPresenter: NSObject {
      */
     func loadNews(countryCode : String?  , pageOffset : Int){
         var artiles : [Article]?
-        var cachedArticles : [ArticleList]?
         let requestCountryCode = validateCountryCode(usingCode : countryCode ?? "")
         newsDelegate?.showLoader()
         APIManager.apiSharredInistance.loadNewsData(with: requestCountryCode , and: pageOffset)
@@ -42,16 +41,7 @@ class NewsPresenter: NSObject {
                     self.newsDelegate?.configureUI(with: artiles ?? [], and: "success")
                 }
             } else {
-                DispatchQueue.main.async {
-                    let objects = self.cache.getObjects(type: ArticleList.self)
-                    if objects.count > 5 {
-                        cachedArticles = Array(objects.prefix(5))
-                        self.newsDelegate?.configureofflineUI(with: cachedArticles ?? [])
-                    } else {
-                        cachedArticles = objects
-                        self.newsDelegate?.configureofflineUI(with: cachedArticles ?? [])
-                    }
-                }
+                self.loadFromCache()
             }
         }
     }
@@ -84,4 +74,19 @@ class NewsPresenter: NSObject {
         }
         return articlesList
     }
+    
+    func loadFromCache() {
+        var cachedArticles : [ArticleList]?
+        DispatchQueue.main.async {
+            let objects = self.cache.getObjects(type: ArticleList.self)
+            if objects.count > 5 {
+                cachedArticles = Array(objects.prefix(5))
+                self.newsDelegate?.configureofflineUI(with: cachedArticles ?? [])
+            } else {
+                cachedArticles = objects
+                self.newsDelegate?.configureofflineUI(with: cachedArticles ?? [])
+            }
+        }
+    }
+    
 }
