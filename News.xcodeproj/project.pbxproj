@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		4A031E96230193B6000CF25F /* ArticleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A031E95230193B6000CF25F /* ArticleList.swift */; };
 		4A031E98230217F2000CF25F /* ResultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A031E97230217F2000CF25F /* ResultsExtension.swift */; };
-		4A037D66230700E8004F6AC7 /* NewsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A037D64230700E8004F6AC7 /* NewsHeader.swift */; };
-		4A037D6E23070B07004F6AC7 /* NewsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A037D6D23070B07004F6AC7 /* NewsHeader.xib */; };
 		4A0581EB2302EAD8001AD6DE /* NewsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0581EA2302EAD8001AD6DE /* NewsTest.swift */; };
 		4A0A0A6722EAFD6D000CBBCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0A0A6622EAFD6D000CBBCE /* AppDelegate.swift */; };
 		4A0A0A6C22EAFD6D000CBBCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A0A0A6A22EAFD6D000CBBCE /* Main.storyboard */; };
@@ -67,8 +65,6 @@
 /* Begin PBXFileReference section */
 		4A031E95230193B6000CF25F /* ArticleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleList.swift; sourceTree = "<group>"; };
 		4A031E97230217F2000CF25F /* ResultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsExtension.swift; sourceTree = "<group>"; };
-		4A037D64230700E8004F6AC7 /* NewsHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsHeader.swift; sourceTree = "<group>"; };
-		4A037D6D23070B07004F6AC7 /* NewsHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsHeader.xib; sourceTree = "<group>"; };
 		4A0581E82302EAD8001AD6DE /* NewsTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A0581EA2302EAD8001AD6DE /* NewsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTest.swift; sourceTree = "<group>"; };
 		4A0581EC2302EAD8001AD6DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -211,7 +207,6 @@
 				4A0A0A9A22EAFD9B000CBBCE /* Presenter */,
 				4A0A0A9E22EAFD9C000CBBCE /* Utils */,
 				F70E05F322F9D15800D4DFC4 /* Helpers */,
-				4A0A0A9522EAFD9B000CBBCE /* Cells */,
 				4A0A0A9422EAFD9B000CBBCE /* View Controller */,
 				4A0A0A6622EAFD6D000CBBCE /* AppDelegate.swift */,
 				4A0A0A6A22EAFD6D000CBBCE /* Main.storyboard */,
@@ -243,6 +238,7 @@
 		4A0A0A9422EAFD9B000CBBCE /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4A0A0A9522EAFD9B000CBBCE /* Cells */,
 				4A0A0AC922EB1850000CBBCE /* NewsViewController.swift */,
 				4A0A0ACA22EB1850000CBBCE /* NewsViewController.xib */,
 				4A0BE1C522EBA79A0070EB62 /* DetailsViewController.swift */,
@@ -256,8 +252,6 @@
 			children = (
 				4A0A0ACD22EB1968000CBBCE /* NewsViewCell.swift */,
 				4A0A0ACE22EB1968000CBBCE /* NewsViewCell.xib */,
-				4A037D64230700E8004F6AC7 /* NewsHeader.swift */,
-				4A037D6D23070B07004F6AC7 /* NewsHeader.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -500,7 +494,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A037D6E23070B07004F6AC7 /* NewsHeader.xib in Resources */,
 				4A0BE1C822EBA79A0070EB62 /* DetailsViewController.xib in Resources */,
 				F70E05FB22F9DC1C00D4DFC4 /* placeholder.jpg in Resources */,
 				4A0A0A7122EAFD70000CBBCE /* LaunchScreen.storyboard in Resources */,
@@ -620,7 +613,6 @@
 				4A0A0AD322EB1C30000CBBCE /* UIViewExtension.swift in Sources */,
 				4A0A0AB522EAFD9C000CBBCE /* APIService.swift in Sources */,
 				4A031E98230217F2000CF25F /* ResultsExtension.swift in Sources */,
-				4A037D66230700E8004F6AC7 /* NewsHeader.swift in Sources */,
 				4A7A0E4D22EB8BF100B59C84 /* NotificationExtension.swift in Sources */,
 				F70E05F222F9BEE500D4DFC4 /* APIManager.swift in Sources */,
 				4A0A0A6722EAFD6D000CBBCE /* AppDelegate.swift in Sources */,
@@ -727,7 +719,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -789,7 +780,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
