@@ -207,6 +207,7 @@
 				4A0A0A9A22EAFD9B000CBBCE /* Presenter */,
 				4A0A0A9E22EAFD9C000CBBCE /* Utils */,
 				F70E05F322F9D15800D4DFC4 /* Helpers */,
+				4A0A0A9522EAFD9B000CBBCE /* Cells */,
 				4A0A0A9422EAFD9B000CBBCE /* View Controller */,
 				4A0A0A6622EAFD6D000CBBCE /* AppDelegate.swift */,
 				4A0A0A6A22EAFD6D000CBBCE /* Main.storyboard */,
@@ -238,7 +239,6 @@
 		4A0A0A9422EAFD9B000CBBCE /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4A0A0A9522EAFD9B000CBBCE /* Cells */,
 				4A0A0AC922EB1850000CBBCE /* NewsViewController.swift */,
 				4A0A0ACA22EB1850000CBBCE /* NewsViewController.xib */,
 				4A0BE1C522EBA79A0070EB62 /* DetailsViewController.swift */,
@@ -253,7 +253,8 @@
 				4A0A0ACD22EB1968000CBBCE /* NewsViewCell.swift */,
 				4A0A0ACE22EB1968000CBBCE /* NewsViewCell.xib */,
 			);
-			path = Cells;
+			name = Cells;
+			path = "View Controller/Cells";
 			sourceTree = "<group>";
 		};
 		4A0A0A9A22EAFD9B000CBBCE /* Presenter */ = {
