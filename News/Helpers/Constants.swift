@@ -18,4 +18,5 @@ class Constants {
     static let DEFAULT_COUNTRY_CODE = "us"
     static let DISK_STORAGE_NAME = "Articles"
     static let CACHE_ARTILCE_KEY = "cachedArticles"
+    static let TABLE_HEADER = "NewsHeader"
 }

@@ -21,7 +21,6 @@ class NewsViewController: UIViewController {
     var articlesArray = [Article]()
     var cachedArticlesArray = [ArticleList]()
     var pageOffset = 1
-    var countryCode : String?
     var isLoadMore = false
     
     @IBOutlet weak var newsTable: UITableView!
@@ -32,6 +31,7 @@ class NewsViewController: UIViewController {
         newsTable.dataSource = self
         newsTable.rowHeight = UITableView.automaticDimension
         newsTable.register(UINib(nibName: "NewsViewCell", bundle: nil), forCellReuseIdentifier: Constants.CELL_IDENTIFIER)
+        newsTable?.register(UINib(nibName: Constants.TABLE_HEADER, bundle: nil), forHeaderFooterViewReuseIdentifier: Constants.TABLE_HEADER)
         setupPullToRefresh()
         setupLoadMore()
         
@@ -48,7 +48,7 @@ class NewsViewController: UIViewController {
      */
     func setupPullToRefresh()  {
         newsTable.spr_setIndicatorHeader {
-            self.presenter.loadNews(countryCode: self.countryCode ?? "", pageOffset: self.pageOffset )
+            self.presenter.loadNews(countryCode:  "", pageOffset: self.pageOffset )
             self.newsTable.spr_endRefreshing()
         }
     }
@@ -58,31 +58,20 @@ class NewsViewController: UIViewController {
     func setupLoadMore()  {
         newsTable.spr_setIndicatorFooter {
             self.isLoadMore = true
-            self.presenter.loadNews(countryCode: self.countryCode ?? "", pageOffset: (self.pageOffset ) + 1)
+            self.presenter.loadNews(countryCode:  "", pageOffset: (self.pageOffset ) + 1)
         }
     }
     /**
      alert dialogue to get the country code from user
      */
     func showAlertForCountryCode() {
-        let alert = UIAlertController(title: "Country Code", message: "Please Enter the Country Code to get the news ", preferredStyle: .alert)
-        alert.addTextField(configurationHandler: { (textField) -> Void in
-        })
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (action) -> Void in
-            let textField = alert?.textFields![0]  
-            self.countryCode = textField?.text
-            self.presenter.loadNews(countryCode: self.countryCode ?? "" , pageOffset: self.pageOffset)
-        }))
-        self.present(alert, animated: true , completion: nil)
+        self.presenter.loadNews(countryCode: "" , pageOffset: self.pageOffset)
     }
     /**
      Handle Ioading data when the internet becomes active
      */
     @objc func networkBecomesConnected() {
-        self.presenter.loadNews(countryCode: self.countryCode ?? "" , pageOffset: self.pageOffset)
-        if self.presentedViewController as? UIAlertController != nil {
-            self.dismiss(animated: true, completion: nil)
-        }
+        self.presenter.loadNews(countryCode: "" , pageOffset: self.pageOffset)
         SwiftMessages.hide()
     }
     /**
@@ -136,8 +125,12 @@ extension NewsViewController : UITableViewDelegate , UITableViewDataSource {
         } else {
             detailsVC.setDescriptonText(with: cachedArticlesArray[indexPath.row].descriptionField)
         }
-        
     }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = newsTable.dequeueReusableHeaderFooterView(withIdentifier: Constants.TABLE_HEADER) as! NewsHeader
+        return headerView
+    }
+    
 }
 
 extension NewsViewController : NewsProtocol {
